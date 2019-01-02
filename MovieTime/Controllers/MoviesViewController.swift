@@ -21,12 +21,14 @@ class MoviesViewController: UIViewController {
     
     //    MARK:- Objects & Properties
     var movieView = String()
-    let someArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+    let moviesViewModel = MoviewViewModel()
+    var moviesModel = [TrendingMoviesModel]()
     
     //    MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         movieView = ViewType.list.rawValue
+        getMovieList()
     }
     
     //    MARK:- IBActions
@@ -40,12 +42,23 @@ class MoviesViewController: UIViewController {
         }
         moviesCollectionView.reloadData()
     }
+    
+    func getMovieList() {
+        moviesViewModel.getTrendingMovie(responseModel: { (response, success, error) in
+            if success == true {
+                self.moviesModel = response!
+                DispatchQueue.main.async {
+                    self.moviesCollectionView.reloadData()
+                }
+            }
+        })
+    }
 }
 
 extension MoviesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return someArray.count
+        return moviesModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -54,10 +67,10 @@ extension MoviesViewController: UICollectionViewDataSource {
         let listCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListViewCell", for: indexPath) as! ListViewCell
         
         if movieView == ViewType.list.rawValue {
-            listCell.movieNameLabel.text = someArray[indexPath.row]
+            listCell.movieNameLabel.text = moviesModel[indexPath.row].title
             return listCell
         } else {
-            gridCell.movieNameLabel.text = someArray[indexPath.row]
+            gridCell.movieNameLabel.text = moviesModel[indexPath.row].title
             return gridCell
         }
     }

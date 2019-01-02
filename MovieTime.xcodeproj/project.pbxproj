@@ -17,6 +17,7 @@
 		5ADB055821DCF1CF00D0F500 /* ApiRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB055721DCF1CF00D0F500 /* ApiRequestManager.swift */; };
 		5ADB055B21DCF85E00D0F500 /* UrlList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB055A21DCF85E00D0F500 /* UrlList.swift */; };
 		5ADB055D21DCF87000D0F500 /* MoviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB055C21DCF87000D0F500 /* MoviewViewModel.swift */; };
+		5ADB056021DD075E00D0F500 /* TrendingMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB055F21DD075E00D0F500 /* TrendingMoviesModel.swift */; };
 		D182B811BB075E859C44D6BE /* Pods_MovieTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B1C7757988DC66DF68F17 /* Pods_MovieTime.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		5ADB055721DCF1CF00D0F500 /* ApiRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequestManager.swift; sourceTree = "<group>"; };
 		5ADB055A21DCF85E00D0F500 /* UrlList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlList.swift; sourceTree = "<group>"; };
 		5ADB055C21DCF87000D0F500 /* MoviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewViewModel.swift; sourceTree = "<group>"; };
+		5ADB055F21DD075E00D0F500 /* TrendingMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesModel.swift; sourceTree = "<group>"; };
 		FD0FDB3E85D853844FE34AD6 /* Pods-MovieTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieTime/Pods-MovieTime.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				5A6D27CA21DCC9C300969217 /* AppDelegate.swift */,
+				5ADB055F21DD075E00D0F500 /* TrendingMoviesModel.swift */,
 				5ADB055E21DCF87600D0F500 /* ViewModels */,
 				5ADB055921DCF84D00D0F500 /* Network Layer */,
 				5ADB055521DCEDAE00D0F500 /* Custom Cells */,
@@ -282,6 +285,7 @@
 				5ADB055021DCE4AF00D0F500 /* ListViewCell.swift in Sources */,
 				5ADB055B21DCF85E00D0F500 /* UrlList.swift in Sources */,
 				5ADB055D21DCF87000D0F500 /* MoviewViewModel.swift in Sources */,
+				5ADB056021DD075E00D0F500 /* TrendingMoviesModel.swift in Sources */,
 				5A6D27CB21DCC9C300969217 /* AppDelegate.swift in Sources */,
 				5ADB055821DCF1CF00D0F500 /* ApiRequestManager.swift in Sources */,
 				5ADB054E21DCE49B00D0F500 /* GridViewCell.swift in Sources */,
