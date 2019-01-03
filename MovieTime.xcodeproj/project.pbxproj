@@ -20,6 +20,7 @@
 		5ADB056021DD075E00D0F500 /* TrendingMoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADB055F21DD075E00D0F500 /* TrendingMoviesModel.swift */; };
 		5AE018A221DDF07900ED5196 /* MovieDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE018A121DDF07900ED5196 /* MovieDescriptionViewController.swift */; };
 		5AE018A521DE069600ED5196 /* MoviesDescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE018A421DE069600ED5196 /* MoviesDescriptionViewModel.swift */; };
+		5AE018A721DE1D5800ED5196 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE018A621DE1D5800ED5196 /* FilterTableViewCell.swift */; };
 		D182B811BB075E859C44D6BE /* Pods_MovieTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 047B1C7757988DC66DF68F17 /* Pods_MovieTime.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		5ADB055F21DD075E00D0F500 /* TrendingMoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesModel.swift; sourceTree = "<group>"; };
 		5AE018A121DDF07900ED5196 /* MovieDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDescriptionViewController.swift; sourceTree = "<group>"; };
 		5AE018A421DE069600ED5196 /* MoviesDescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesDescriptionViewModel.swift; sourceTree = "<group>"; };
+		5AE018A621DE1D5800ED5196 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		FD0FDB3E85D853844FE34AD6 /* Pods-MovieTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieTime/Pods-MovieTime.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 			children = (
 				5ADB054D21DCE49B00D0F500 /* GridViewCell.swift */,
 				5ADB054F21DCE4AF00D0F500 /* ListViewCell.swift */,
+				5AE018A621DE1D5800ED5196 /* FilterTableViewCell.swift */,
 			);
 			path = MoviewCollectionCells;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				5ADB056021DD075E00D0F500 /* TrendingMoviesModel.swift in Sources */,
 				5A6D27CB21DCC9C300969217 /* AppDelegate.swift in Sources */,
 				5ADB055821DCF1CF00D0F500 /* ApiRequestManager.swift in Sources */,
+				5AE018A721DE1D5800ED5196 /* FilterTableViewCell.swift in Sources */,
 				5ADB054E21DCE49B00D0F500 /* GridViewCell.swift in Sources */,
 				5ADB055221DCE55300D0F500 /* MoviesViewController.swift in Sources */,
 			);

@@ -9,6 +9,9 @@
 import Foundation
 
 let topRatedMoviesURL = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=f381b2ca5c59e33c296288b03a412294")
+let moviesInTheaterURL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=f381b2ca5c59e33c296288b03a412294")
+let popularMoviesURL = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=f381b2ca5c59e33c296288b03a412294")
+let upcomingMoviesURL = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=f381b2ca5c59e33c296288b03a412294")
 
 func userRatingURL(movieID: Int) -> URL {
     return URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/rating?api_key=f381b2ca5c59e33c296288b03a412294")!

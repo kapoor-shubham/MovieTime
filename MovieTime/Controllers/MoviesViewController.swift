@@ -20,17 +20,28 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var serachMovieTextField: UITextField!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var viewTypeButton: UIButton!
+    @IBOutlet weak var filterTableView: UITableView!
     
     //    MARK:- Objects & Properties
     var movieView = String()
     let moviesViewModel = MoviewViewModel()
     var moviesModel = [TrendingMoviesModel]()
+    var filterList = ["In Theaters", "Popular", "Top Rated", "Upcoming"]
     
     //    MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         movieView = ViewType.list.rawValue
         getMovieList(url: topRatedMoviesURL!)
+        viewUIUpdate()
+    }
+    
+    @IBAction func filterButtonAction(_ sender: UIButton) {
+        if filterTableView.isHidden == true {
+            filterTableView.isHidden = false
+        } else {
+            filterTableView.isHidden = true
+        }
     }
     
     @IBAction func searchbuttonAction(_ sender: UIButton) {
@@ -53,6 +64,11 @@ class MoviesViewController: UIViewController {
         moviesCollectionView.reloadData()
     }
     
+    private func viewUIUpdate() {
+        filterTableView.layer.borderColor = UIColor(red: 226/255, green: 150/255, blue: 32/255, alpha: 1.0).cgColor
+        filterTableView.layer.borderWidth = 2.0
+    }
+    
     //    MARK:- Private Helper Methods
     private func getMovieList(url: URL) {
         moviesViewModel.getTrendingMovie(url: url, responseModel: { (response, success, error) in
@@ -63,6 +79,42 @@ class MoviesViewController: UIViewController {
                 }
             }
         })
+    }
+}
+
+extension MoviesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filterList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FilterTableViewCell") as! FilterTableViewCell
+        cell.textLabel!.text = filterList[indexPath.row]
+        cell.selectionStyle = .none
+        return cell
+    }
+}
+
+extension MoviesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        filterTableView.isHidden = true
+        var url: URL?
+        switch indexPath.row {
+        case 0:
+            url = moviesInTheaterURL
+        case 1:
+            url = popularMoviesURL
+        case 2:
+            url = topRatedMoviesURL
+        case 3:
+            url = upcomingMoviesURL
+        default: url = topRatedMoviesURL
+        }
+        getMovieList(url: url!)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
     }
 }
 
