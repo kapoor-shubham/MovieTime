@@ -8,5 +8,6 @@ target 'MovieTime' do
   # Pods for MovieTime
 
 pod 'Alamofire'
+pod 'Kingfisher'
 
 end

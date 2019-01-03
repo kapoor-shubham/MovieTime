@@ -14,8 +14,8 @@ class MoviewViewModel: NSObject {
     
     let movieModel = TrendingMoviesModel()
     
-    func getTrendingMovie(responseModel: @escaping (movieResponseModel)) -> Void {
-        ApiRequestManager.apiSharedManager.getApiCall(url: topRatedMoviesURL!, headers: ["language": "en-US", "page": "1"], responseObj: { (response, success, error) in
+    func getTrendingMovie(url: URL, responseModel: @escaping (movieResponseModel)) -> Void {
+        ApiRequestManager.apiSharedManager.getApiCall(url: url, headers: ["language": "en-US", "page": "1"], responseObj: { (response, success, error) in
             print(response!)
             if success == true {
                 if let data = response as? [String: AnyObject] {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum ViewType: String {
     case grid = "grid"
@@ -16,6 +17,7 @@ enum ViewType: String {
 class MoviesViewController: UIViewController {
 
     //    MARK:- IBOutlets
+    @IBOutlet weak var serachMovieTextField: UITextField!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var viewTypeButton: UIButton!
     
@@ -28,23 +30,32 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movieView = ViewType.list.rawValue
-        getMovieList()
+        getMovieList(url: topRatedMoviesURL!)
+    }
+    
+    @IBAction func searchbuttonAction(_ sender: UIButton) {
+        guard let movieToSerach = serachMovieTextField.text else {
+            self.showAlert(withTitle: "Error", withMessage: "Enter some movie name to search.")
+            return
+        }
+        getMovieList(url: searchMovieURL(movieName: movieToSerach))
     }
     
     //    MARK:- IBActions
     @IBAction func viewTypeButtonAction(_ sender: UIButton) {
         if movieView == ViewType.list.rawValue {
             movieView = ViewType.grid.rawValue
-            viewTypeButton.imageView?.image = UIImage(named: "grid")
+            viewTypeButton.setImage(UIImage(named: "grid"), for: .normal)
         } else {
             movieView = ViewType.list.rawValue
-            viewTypeButton.imageView?.image = UIImage(named: "list")
+            viewTypeButton.setImage(UIImage(named: "list"), for: .normal)
         }
         moviesCollectionView.reloadData()
     }
     
-    func getMovieList() {
-        moviesViewModel.getTrendingMovie(responseModel: { (response, success, error) in
+    //    MARK:- Private Helper Methods
+    private func getMovieList(url: URL) {
+        moviesViewModel.getTrendingMovie(url: url, responseModel: { (response, success, error) in
             if success == true {
                 self.moviesModel = response!
                 DispatchQueue.main.async {
@@ -68,11 +79,29 @@ extension MoviesViewController: UICollectionViewDataSource {
         
         if movieView == ViewType.list.rawValue {
             listCell.movieNameLabel.text = moviesModel[indexPath.row].title
+            let rating = String(format: "%.1f", moviesModel[indexPath.row].rating ?? "nil")
+            listCell.movieRatingLabel.text = rating
+            listCell.releaseDateLabel.text = moviesModel[indexPath.row].releaseDate
+            listCell.movieImageView.kf.indicatorType = .activity
             return listCell
         } else {
             gridCell.movieNameLabel.text = moviesModel[indexPath.row].title
+            let rating = String(format: "%.1f", moviesModel[indexPath.row].rating ?? "nil")
+            gridCell.movieRatingLabel.text = rating
+            gridCell.releaseDateLabel.text = moviesModel[indexPath.row].releaseDate
+            gridCell.movieImageView.kf.indicatorType = .activity
             return gridCell
         }
+    }
+}
+
+extension MoviesViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "MovieDescriptionViewController") as! MovieDescriptionViewController
+        vc.moviesModel = moviesModel[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -85,5 +114,22 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout {
             let cellWidth = (moviesCollectionView.frame.width/2)
             return CGSize(width: cellWidth-10, height: cellWidth+60)
         }
+    }
+}
+
+// MARK:- Extension for Alert View
+extension  UIViewController {
+    
+    func showAlert(withTitle title: String, withMessage message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+        })
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
+        })
     }
 }

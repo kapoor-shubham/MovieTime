@@ -20,6 +20,7 @@ class TrendingMoviesModel: NSObject {
     var title: String?
     
     func fetchMovieData(data: [[String: AnyObject]]) -> [TrendingMoviesModel] {
+        trendingMoviesModelObj.removeAll()
         for movieData in data {
             let trendingModelObj = TrendingMoviesModel()
             trendingModelObj.movieID = movieData["id"] as? Int

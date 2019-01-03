@@ -9,13 +9,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieTime/Controllers/MoviesViewController.swift"
-            timestampString = "568135461.036428"
+            filePath = "MovieTime/ViewModels/MoviesDescriptionViewModel.swift"
+            timestampString = "568204056.179426"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "getMovieList()"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getTrendingMovie(rating:movieID:responseModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieTime/ViewModels/MoviesDescriptionViewModel.swift"
+            timestampString = "568204056.17953"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "getTrendingMovie(rating:movieID:responseModel:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MovieTime.MoviesDescriptionViewModel.getTrendingMovie(rating: Swift.Float, movieID: Swift.Int, responseModel: (Swift.Optional&lt;Any&gt;, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MovieTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubham.kapoor/Desktop/MovieTime/MovieTime/ViewModels/MoviesDescriptionViewModel.swift"
+                  timestampString = "568204056.485768"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in MovieTime.MoviesDescriptionViewModel.getTrendingMovie(rating: Swift.Float, movieID: Swift.Int, responseModel: (Swift.Optional&lt;Any&gt;, Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MovieTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shubham.kapoor/Desktop/MovieTime/MovieTime/ViewModels/MoviesDescriptionViewModel.swift"
+                  timestampString = "568204056.490819"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "58">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieTime/ViewModels/MoviewViewModel.swift"
+            timestampString = "568204056.1796041"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "getTrendingMovie(url:responseModel:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieTime/ViewModels/MoviewViewModel.swift"
-            timestampString = "568135461.036517"
+            timestampString = "568204056.179677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "getTrendingMovie(responseModel:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "getTrendingMovie(url:responseModel:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
