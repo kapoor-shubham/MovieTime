@@ -137,14 +137,22 @@ extension MoviesViewController: UICollectionViewDataSource {
             let rating = String(format: "%.1f", moviesModel[indexPath.row].rating ?? "nil")
             listCell.movieRatingLabel.text = rating
             listCell.releaseDateLabel.text = moviesModel[indexPath.row].releaseDate
-            listCell.movieImageView.kf.indicatorType = .activity
+            if let imagePath = moviesModel[indexPath.row].imagePath {
+                let url = URL(string: "http://image.tmdb.org/t/p/original"+imagePath)
+                let resource = ImageResource(downloadURL: url!, cacheKey: "key-\(indexPath.row)")
+                listCell.movieImageView.kf.setImage(with: resource)
+            }
             return listCell
         } else {
             gridCell.movieNameLabel.text = moviesModel[indexPath.row].title
             let rating = String(format: "%.1f", moviesModel[indexPath.row].rating ?? "nil")
             gridCell.movieRatingLabel.text = rating
             gridCell.releaseDateLabel.text = moviesModel[indexPath.row].releaseDate
-            gridCell.movieImageView.kf.indicatorType = .activity
+            if let imagePath = moviesModel[indexPath.row].imagePath {
+                let url = URL(string: "http://image.tmdb.org/t/p/original"+imagePath)
+                let resource = ImageResource(downloadURL: url!, cacheKey: "key-\(indexPath.row)")
+                gridCell.movieImageView.kf.setImage(with: resource)
+            }
             return gridCell
         }
     }
@@ -186,5 +194,29 @@ extension  UIViewController {
         DispatchQueue.main.async(execute: {
             self.present(alert, animated: true)
         })
+    }
+}
+
+
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else {
+                    print(error)
+                    return }
+            DispatchQueue.main.async() {
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
     }
 }
