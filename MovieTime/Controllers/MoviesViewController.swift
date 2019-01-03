@@ -29,6 +29,7 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
     var moviesModel = [TrendingMoviesModel]()
     var filterList = ["In Theaters", "Popular", "Top Rated", "Upcoming"]
     var selectedFilter = String()
+    var isSearched = Bool()
     
     //    MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -51,8 +52,9 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
             self.showAlert(withTitle: "Error", withMessage: "Enter some movie name to search.")
             return
         }
-        KingfisherManager.shared.cache.clearMemoryCache()
-        KingfisherManager.shared.cache.clearDiskCache()
+        isSearched = true
+        serachMovieTextField.resignFirstResponder()
+        deleteImageCatche()
         getMovieList(url: searchMovieURL(movieName: movieToSerach))
     }
     
@@ -68,6 +70,9 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
         moviesCollectionView.reloadData()
     }
     
+    //    MARK:- Private Helper Methods
+
+    /** Initial UIView Update */
     private func viewUIUpdate() {
         filterTableView.layer.borderColor = UIColor(red: 226/255, green: 150/255, blue: 32/255, alpha: 1.0).cgColor
         filterTableView.layer.borderWidth = 2.0
@@ -75,7 +80,7 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
         selectedFilter = selectedFilter.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
     }
     
-    //    MARK:- Private Helper Methods
+    /** Calls API and update movies List */
     private func getMovieList(url: URL) {
         startAnimating()
         moviesViewModel.getTrendingMovie(url: url, responseModel: { (response, success, error) in
@@ -90,6 +95,7 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
     }
 }
 
+// MARK:- TableView DataSource
 extension MoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filterList.count
@@ -103,6 +109,7 @@ extension MoviesViewController: UITableViewDataSource {
     }
 }
 
+// MARK:- TableView Delegate
 extension MoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         filterTableView.isHidden = true
@@ -118,6 +125,12 @@ extension MoviesViewController: UITableViewDelegate {
             url = upcomingMoviesURL
         default: url = topRatedMoviesURL
         }
+        if isSearched == true {
+            isSearched = false
+            deleteImageCatche()
+            serachMovieTextField.text = nil
+            serachMovieTextField.resignFirstResponder()
+        }
         getMovieList(url: url!)
         selectedFilter = filterList[indexPath.row]
         selectedFilter = selectedFilter.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
@@ -128,6 +141,7 @@ extension MoviesViewController: UITableViewDelegate {
     }
 }
 
+// MARK:- CollectionView DataSource
 extension MoviesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -169,6 +183,7 @@ extension MoviesViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK:- CollectionView Delegate
 extension MoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -186,6 +201,7 @@ extension MoviesViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK:- CollectionView FlowLayout Delegate
 extension MoviesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -199,7 +215,7 @@ extension MoviesViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK:- Extension for Alert View
-extension  UIViewController {
+extension UIViewController {
     
     func showAlert(withTitle title: String, withMessage message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -213,4 +229,11 @@ extension  UIViewController {
             self.present(alert, animated: true)
         })
     }
+}
+
+
+//MARK:- Delete Image Catche
+fileprivate func deleteImageCatche() {
+    KingfisherManager.shared.cache.clearMemoryCache()
+    KingfisherManager.shared.cache.clearDiskCache()
 }

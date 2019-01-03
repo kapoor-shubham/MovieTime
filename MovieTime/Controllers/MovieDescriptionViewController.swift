@@ -53,8 +53,7 @@ class MovieDescriptionViewController: UIViewController {
     
     private func sendUserRatings(rating: String) {
         let ratingValue = Float(rating)
-        movieDescriptionViewModel.getTrendingMovie(rating: ratingValue!, movieID: moviesModel.movieID!, responseModel: { (response, success, error) in
-            print(response!)
+        movieDescriptionViewModel.sendRating(rating: ratingValue!, movieID: moviesModel.movieID!, responseModel: { (_, _, _) in
         })
     }
    

@@ -71,7 +71,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wqe-c2-RfK">
-                                                    <rect key="frame" x="65" y="200" width="18" height="15"/>
+                                                    <rect key="frame" x="60" y="200" width="18" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/12/2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlX-fZ-ugJ">
-                                                    <rect key="frame" x="87" y="215" width="64" height="15"/>
+                                                    <rect key="frame" x="82" y="215" width="64" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -92,12 +92,12 @@
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.91384227803582996" blue="0.32650544150333882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="zlX-fZ-ugJ" firstAttribute="leading" secondItem="tf6-fB-4tR" secondAttribute="trailing" constant="5" id="1Lv-Ry-ioi"/>
+                                            <constraint firstItem="zlX-fZ-ugJ" firstAttribute="leading" secondItem="tf6-fB-4tR" secondAttribute="trailing" id="1Lv-Ry-ioi"/>
                                             <constraint firstItem="gbT-wz-EeN" firstAttribute="leading" secondItem="E4S-zf-eXl" secondAttribute="leading" id="3eK-Se-IXx"/>
                                             <constraint firstItem="vCM-cG-CRN" firstAttribute="leading" secondItem="E4S-zf-eXl" secondAttribute="leading" constant="5" id="3kZ-N4-l2R"/>
                                             <constraint firstItem="k3p-wg-a6G" firstAttribute="top" secondItem="vCM-cG-CRN" secondAttribute="bottom" id="IGn-Xf-8Nf"/>
                                             <constraint firstItem="vCM-cG-CRN" firstAttribute="top" secondItem="gbT-wz-EeN" secondAttribute="bottom" id="YhD-6M-6PR"/>
-                                            <constraint firstItem="Wqe-c2-RfK" firstAttribute="leading" secondItem="k3p-wg-a6G" secondAttribute="trailing" constant="5" id="dPB-1d-c80"/>
+                                            <constraint firstItem="Wqe-c2-RfK" firstAttribute="leading" secondItem="k3p-wg-a6G" secondAttribute="trailing" id="dPB-1d-c80"/>
                                             <constraint firstItem="gbT-wz-EeN" firstAttribute="top" secondItem="E4S-zf-eXl" secondAttribute="top" id="dTq-zA-fOh"/>
                                             <constraint firstItem="tf6-fB-4tR" firstAttribute="top" secondItem="Wqe-c2-RfK" secondAttribute="bottom" id="eo3-jz-lC7"/>
                                             <constraint firstAttribute="trailing" secondItem="gbT-wz-EeN" secondAttribute="trailing" id="gCo-7K-WWj"/>
@@ -141,7 +141,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKu-OB-twF">
-                                                    <rect key="frame" x="135" y="30.5" width="18" height="15"/>
+                                                    <rect key="frame" x="130" y="30.5" width="18" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -153,7 +153,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/12/2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAL-5i-hJx">
-                                                    <rect key="frame" x="157" y="45.5" width="64" height="15"/>
+                                                    <rect key="frame" x="152" y="45.5" width="64" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -166,8 +166,8 @@
                                             <constraint firstItem="WLX-NE-vOi" firstAttribute="top" secondItem="IUE-x2-Qoc" secondAttribute="bottom" id="7rP-3m-qhe"/>
                                             <constraint firstItem="WLX-NE-vOi" firstAttribute="leading" secondItem="3bA-ew-4bA" secondAttribute="trailing" constant="10" id="BT3-1X-aPC"/>
                                             <constraint firstItem="kHC-Uy-JdX" firstAttribute="top" secondItem="KKu-OB-twF" secondAttribute="bottom" id="KBd-BM-fyW"/>
-                                            <constraint firstItem="KKu-OB-twF" firstAttribute="leading" secondItem="WLX-NE-vOi" secondAttribute="trailing" constant="5" id="UO0-Bi-Wai"/>
-                                            <constraint firstItem="wAL-5i-hJx" firstAttribute="leading" secondItem="kHC-Uy-JdX" secondAttribute="trailing" constant="5" id="aOP-91-NWj"/>
+                                            <constraint firstItem="KKu-OB-twF" firstAttribute="leading" secondItem="WLX-NE-vOi" secondAttribute="trailing" id="UO0-Bi-Wai"/>
+                                            <constraint firstItem="wAL-5i-hJx" firstAttribute="leading" secondItem="kHC-Uy-JdX" secondAttribute="trailing" id="aOP-91-NWj"/>
                                             <constraint firstItem="KKu-OB-twF" firstAttribute="centerY" secondItem="WLX-NE-vOi" secondAttribute="centerY" id="hTL-n1-2hg"/>
                                             <constraint firstItem="3bA-ew-4bA" firstAttribute="top" secondItem="LTt-7C-d3f" secondAttribute="top" id="j5j-b1-DSe"/>
                                             <constraint firstItem="3bA-ew-4bA" firstAttribute="leading" secondItem="LTt-7C-d3f" secondAttribute="leading" id="jIE-q4-fuJ"/>
@@ -209,7 +209,7 @@
                                         <rect key="frame" x="10" y="10" width="235" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OI-p5-iWp">
                                         <rect key="frame" x="250" y="0.0" width="50" height="50"/>
