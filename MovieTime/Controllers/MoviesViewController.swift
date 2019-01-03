@@ -95,6 +95,17 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
     }
 }
 
+// MARK:- TextField Delegate
+extension MoviesViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != nil {
+            searchbuttonAction(UIButton())
+        }
+        return true
+    }
+}
+
 // MARK:- TableView DataSource
 extension MoviesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
