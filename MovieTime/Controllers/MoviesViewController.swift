@@ -28,13 +28,14 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
     let moviesViewModel = MoviewViewModel()
     var moviesModel = [TrendingMoviesModel]()
     var filterList = ["In Theaters", "Popular", "Top Rated", "Upcoming"]
+    var selectedFilter = String()
     
     //    MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieView = ViewType.list.rawValue
-        getMovieList(url: topRatedMoviesURL!)
         viewUIUpdate()
+        movieView = ViewType.list.rawValue
+        getMovieList(url: moviesInTheaterURL!)
     }
     
     @IBAction func filterButtonAction(_ sender: UIButton) {
@@ -50,6 +51,8 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
             self.showAlert(withTitle: "Error", withMessage: "Enter some movie name to search.")
             return
         }
+        KingfisherManager.shared.cache.clearMemoryCache()
+        KingfisherManager.shared.cache.clearDiskCache()
         getMovieList(url: searchMovieURL(movieName: movieToSerach))
     }
     
@@ -68,6 +71,8 @@ class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
     private func viewUIUpdate() {
         filterTableView.layer.borderColor = UIColor(red: 226/255, green: 150/255, blue: 32/255, alpha: 1.0).cgColor
         filterTableView.layer.borderWidth = 2.0
+        selectedFilter = "In Theaters"
+        selectedFilter = selectedFilter.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
     }
     
     //    MARK:- Private Helper Methods
@@ -114,6 +119,8 @@ extension MoviesViewController: UITableViewDelegate {
         default: url = topRatedMoviesURL
         }
         getMovieList(url: url!)
+        selectedFilter = filterList[indexPath.row]
+        selectedFilter = selectedFilter.replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -137,9 +144,11 @@ extension MoviesViewController: UICollectionViewDataSource {
             let rating = String(format: "%.1f", moviesModel[indexPath.row].rating ?? "nil")
             listCell.movieRatingLabel.text = rating
             listCell.releaseDateLabel.text = moviesModel[indexPath.row].releaseDate
+            listCell.movieImageView.kf.indicatorType = .activity
             if let imagePath = moviesModel[indexPath.row].imagePath {
                 let url = URL(string: "http://image.tmdb.org/t/p/original"+imagePath)
-                let resource = ImageResource(downloadURL: url!, cacheKey: "key-\(indexPath.row)")
+                let catcheKey = "key-\(selectedFilter)\(indexPath.row)"
+                let resource = ImageResource(downloadURL: url!, cacheKey: catcheKey)
                 listCell.movieImageView.kf.setImage(with: resource)
             }
             return listCell
@@ -148,9 +157,11 @@ extension MoviesViewController: UICollectionViewDataSource {
             let rating = String(format: "%.1f", moviesModel[indexPath.row].rating ?? "nil")
             gridCell.movieRatingLabel.text = rating
             gridCell.releaseDateLabel.text = moviesModel[indexPath.row].releaseDate
+            gridCell.movieImageView.kf.indicatorType = .activity
             if let imagePath = moviesModel[indexPath.row].imagePath {
                 let url = URL(string: "http://image.tmdb.org/t/p/original"+imagePath)
-                let resource = ImageResource(downloadURL: url!, cacheKey: "key-\(indexPath.row)")
+                let catcheKey = "key-\(selectedFilter)\(indexPath.row)"
+                let resource = ImageResource(downloadURL: url!, cacheKey: catcheKey)
                 gridCell.movieImageView.kf.setImage(with: resource)
             }
             return gridCell
@@ -163,6 +174,13 @@ extension MoviesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "MovieDescriptionViewController") as! MovieDescriptionViewController
+        var resource: ImageResource?
+        if let imagePath = moviesModel[indexPath.row].imagePath {
+            let url = URL(string: "http://image.tmdb.org/t/p/original"+imagePath)
+            let catcheKey = "key-\(selectedFilter)\(indexPath.row)"
+            resource = ImageResource(downloadURL: url!, cacheKey: catcheKey)
+        }
+        vc.resource = resource
         vc.moviesModel = moviesModel[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -194,29 +212,5 @@ extension  UIViewController {
         DispatchQueue.main.async(execute: {
             self.present(alert, animated: true)
         })
-    }
-}
-
-
-extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else {
-                    print(error)
-                    return }
-            DispatchQueue.main.async() {
-                self.image = image
-            }
-            }.resume()
-    }
-    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {  // for swift 4.2 syntax just use ===> mode: UIView.ContentMode
-        guard let url = URL(string: link) else { return }
-        downloaded(from: url, contentMode: mode)
     }
 }

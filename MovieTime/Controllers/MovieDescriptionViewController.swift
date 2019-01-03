@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieDescriptionViewController: UIViewController {
     
@@ -14,10 +15,13 @@ class MovieDescriptionViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var userRatingButton: UIButton!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var titleLabelHeightAnchor: NSLayoutConstraint!
     
     //    MARK:- Objects & Properties
     var moviesModel = TrendingMoviesModel()
     let movieDescriptionViewModel = MoviesDescriptionViewModel()
+    var resource: ImageResource?
 
     //    MARK:- View Life Cycle
     override func viewDidLoad() {
@@ -57,8 +61,19 @@ class MovieDescriptionViewController: UIViewController {
     //    MARK:- Private Helper Methods
     private func viewUIUpdate() {
         titleLabel.text = moviesModel.title
+        titleLabelHeightAnchor.constant = heightForView(text: moviesModel.title!)
+        self.view.updateConstraints()
         descriptionTextView.text = moviesModel.overview
+        movieImageView.kf.setImage(with: resource)
     }
     
-    
+    private func heightForView(text: String) -> CGFloat {
+        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: titleLabel.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = titleLabel.font
+        label.text = text
+        label.sizeToFit()
+        return label.frame.height
+    }
 }
