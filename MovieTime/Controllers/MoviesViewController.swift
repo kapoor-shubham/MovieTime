@@ -8,13 +8,14 @@
 
 import UIKit
 import Kingfisher
+import NVActivityIndicatorView
 
 enum ViewType: String {
     case grid = "grid"
     case list = "list"
 }
 
-class MoviesViewController: UIViewController {
+class MoviesViewController: UIViewController, NVActivityIndicatorViewable {
 
     //    MARK:- IBOutlets
     @IBOutlet weak var serachMovieTextField: UITextField!
@@ -71,7 +72,9 @@ class MoviesViewController: UIViewController {
     
     //    MARK:- Private Helper Methods
     private func getMovieList(url: URL) {
+        startAnimating()
         moviesViewModel.getTrendingMovie(url: url, responseModel: { (response, success, error) in
+            self.stopAnimating()
             if success == true {
                 self.moviesModel = response!
                 DispatchQueue.main.async {

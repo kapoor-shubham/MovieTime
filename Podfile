@@ -9,5 +9,6 @@ target 'MovieTime' do
 
 pod 'Alamofire'
 pod 'Kingfisher'
+pod 'NVActivityIndicatorView'
 
 end
